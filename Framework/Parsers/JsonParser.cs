@@ -1,19 +1,12 @@
-﻿using Entities;
+﻿using System.Collections.Generic;
+using Entities;
+using Framework.Entities.WoW.ItemAPI;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace JsonUtils
+namespace Framework.Parsers
 {
     public class JsonParser
     {
-        public JsonParser()
-        {
-        }
-
         public ItemSet GetItemSet(string json)
         {
             return JsonConvert.DeserializeObject<ItemSet>(json);
@@ -26,7 +19,7 @@ namespace JsonUtils
 
         public int GetItemId(string json)
         {
-            return JsonConvert.DeserializeObject<Item>(json).id;
+            return JsonConvert.DeserializeObject<Item>(json).Id;
         }
         public List<int> GetItemsInItemSet(string json)
         {

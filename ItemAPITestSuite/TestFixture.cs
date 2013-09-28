@@ -1,36 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 
 using HttpUtils;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace NUnitTest1
 {
     [TestFixture]
     public class TestFixture1
     {
-        HttpClient client;
+        HttpClient _client;
         
         [TestFixtureSetUp]
-        public void init()
+        public void Init()
         {
-            client = new HttpClient();
+            _client = new HttpClient();
         }
 
         [Test]
         public void TestValidItemNameForItemId()
         {
-            Assert.AreEqual("Deep Earth Mantle", client.GetItem("76753").name);
+            Assert.AreEqual("Deep Earth Mantle", _client.GetItem("76753").Name);
         }
 
         [Test]
         public void TestValidItemSetNameForItemSetId()
         {
-            Assert.AreEqual("Deep Earth Vestments", client.GetItemSet("1060").name);
+            Assert.AreEqual("Deep Earth Vestments", _client.GetItemSet("1060").name);
         }
 
         [Test]
@@ -40,7 +36,7 @@ namespace NUnitTest1
             
             foreach (int item in items)
             {
-                Assert.AreEqual(1060, client.GetItem(item.ToString()).itemSet.id);
+                Assert.AreEqual(1060, _client.GetItem(item.ToString()).ItemSet.id);
             }
         }
 
@@ -51,7 +47,7 @@ namespace NUnitTest1
 
             foreach (int item in items)
             {
-                Assert.AreEqual(false, client.GetItem(item.ToString()).isAuctionable);
+                Assert.AreEqual(false, _client.GetItem(item.ToString()).IsAuctionable);
             }
         }
 
@@ -62,14 +58,14 @@ namespace NUnitTest1
 
             foreach (int item in items)
             {
-                List<int> allowableClasses = client.GetItem(item.ToString()).allowableClasses;
-                Assert.AreEqual(false, allowableClasses.Except<int>(new int[] { 11 }).Any<int>());
+                List<int> allowableClasses = _client.GetItem(item.ToString()).AllowableClasses;
+                Assert.AreEqual(false, allowableClasses.Except(new[] { 11 }).Any());
             }
         }
 
         private List<int> GetSetItems(string setId)
         {
-            return client.GetItemSet(setId).items;
+            return _client.GetItemSet(setId).items;
         }
     }
 }

@@ -5,7 +5,8 @@ using System.Text;
 using System.Net;
 using System.IO;
 using Entities;
-using JsonUtils;
+using Framework.Entities.WoW.ItemAPI;
+using Framework.Parsers;
 
 namespace HttpUtils
 {
