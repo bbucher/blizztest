@@ -1,36 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net;
 using System.IO;
+using System.Net;
 using Entities;
 using Framework.Entities.WoW.ItemAPI;
 using Framework.Parsers;
 
-namespace HttpUtils
+namespace Framework.Utils
 {
     public class HttpClient
     {
-        JsonParser parser;
-        private const string US_HOST = "us.battle.net";
+        readonly JsonParser _parser;
+        private const string UsHost = "us.battle.net";
         private string itemEndpointSegment = @"/api/wow/item/";
         private string itemSetEndpointSegment = @"/api/wow/item/set/";
         public string ContentType { get; set; }
         
         public HttpClient()
         {
-            parser = new JsonParser();
+            _parser = new JsonParser();
             ContentType = "text/xml";
         }
 
         public ItemSet GetItemSet(string itemSetId)
         {
-            return parser.GetItemSet(this.MakeRequest(US_HOST + itemSetEndpointSegment + itemSetId));
+            return _parser.GetItemSet(MakeRequest(UsHost + itemSetEndpointSegment + itemSetId));
         }
         public Item GetItem(string itemId)
         {
-            return parser.GetItem(this.MakeRequest(US_HOST + itemEndpointSegment + itemId));
+            return _parser.GetItem(MakeRequest(UsHost + itemEndpointSegment + itemId));
         }
 
         private string MakeRequest(string endpoint)

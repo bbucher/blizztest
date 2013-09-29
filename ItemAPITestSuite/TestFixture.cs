@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Framework.Utils;
 using NUnit.Framework;
-
-using HttpUtils;
 
 namespace NUnitTest1
 {
