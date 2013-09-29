@@ -43,7 +43,7 @@ namespace NUnitTest1
         {
             var expectedItems = new[] { 76749, 76750, 76751, 76752, 76753 };
 
-            List<int> items = GetSetItems("1060");
+            var items = GetSetItems("1060");
 
             //assert that there are no differences between the set of expected values and the set of items returned from the API call
             Assert.AreEqual(false, items.Except(expectedItems).Any());
